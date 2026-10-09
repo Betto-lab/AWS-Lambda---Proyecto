@@ -46,16 +46,11 @@ Proyecto de infraestructura como código con Terraform para desplegar una arquit
 
 
 
-\## Estado actual
+## Estado actual
 
-
-
-\- DEV desplegado y probado correctamente.
-
-\- QA pendiente.
-
-\- PROD pendiente.
-
+- DEV desplegado y probado correctamente.
+- QA desplegado y probado correctamente.
+- PROD desplegado y probado correctamente.
 
 
 \## Estructura
