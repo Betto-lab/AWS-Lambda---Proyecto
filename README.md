@@ -570,4 +570,16 @@ La solución permite desplegar múltiples ambientes independientes y automatiza 
 
 Las pruebas realizadas confirmaron el funcionamiento completo del flujo desde API Gateway hasta el procesamiento final de los archivos almacenados en Amazon S3.
 
-Finalmente, se realizó la eliminación controlada de los recursos mediante `terraform destroy`, comprobando que toda la infraestructura puede ser creada y eliminada de manera reproducible mediante código.
+Finalmente, se realizó la eliminación controlada de los recursos mediante `terraform destroy`, comprobando que toda la infraestructura puede ser creada y eliminada de manera reproducible mediante código.}
+
+
+## Evidencias
+
+El proyecto fue desplegado y validado en AWS para los ambientes DEV, QA y PROD.
+
+INTEGRANTES:
+Enriquez Cabanillas, César - 000280651
+Lázaro Velásquez, Jesús - 000202981
+Martino López, Marielsys - 000281361
+Moran Carbonel, Jair - 000284492
+Mori Galarza, Franco - 0000276998
