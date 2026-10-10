@@ -10,6 +10,7 @@ La arquitectura puede desplegarse de forma independiente en tres entornos:
 - QA
 - PROD
 
+La separación por ambientes permite realizar pruebas y validaciones de forma independiente antes de pasar los cambios a producción. De esta manera, DEV se utiliza para desarrollo, QA para pruebas y PROD para el entorno final.
 ---
 
 ## 1. Objetivo del proyecto
