@@ -561,7 +561,25 @@ Esto permite completar correctamente la destrucción del bucket S3.
 
 ---
 
-## 21. Estado final del proyecto
+## 21. Verificación posterior a terraform destroy
+
+Después de ejecutar `terraform destroy` se debe comprobar que los recursos del ambiente hayan sido eliminados correctamente.
+
+Se recomienda revisar en la consola de AWS:
+
+- API Gateway
+- Funciones Lambda
+- Buckets de Amazon S3
+- Colas SQS y Dead Letter Queue
+- CloudWatch Logs
+- VPC y componentes de red
+- Endpoints de VPC
+
+La comprobación final permite detectar recursos que puedan haber quedado activos y evitar consumos innecesarios en la cuenta de AWS.
+
+Como evidencia se debe conservar la salida `Destroy complete!` de Terraform y capturas de la consola de AWS después de la eliminación.
+
+## 22. Estado final del proyecto
 
 Los tres ambientes fueron implementados y probados correctamente:
 
@@ -591,7 +609,7 @@ Terraform Destroy       OK
 
 ---
 
-## 22. Repositorio
+## 23. Repositorio
 
 Repositorio del proyecto:
 
@@ -599,7 +617,7 @@ https://github.com/Betto-lab/AWS-Lambda---Proyecto
 
 ---
 
-## 23. Conclusión
+## 24. Conclusión
 
 El proyecto demuestra la implementación de una arquitectura AWS utilizando Infrastructure as Code mediante Terraform.
 
