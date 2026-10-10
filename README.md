@@ -433,7 +433,19 @@ Lambda Upload
 
 ---
 
-## 16. CloudWatch
+## 16. Verificación de almacenamiento y mensajería
+Después de realizar una prueba del endpoint se debe comprobar el flujo entre Amazon S3 y Amazon SQS.
+
+En Amazon S3 se debe verificar la existencia de objetos en:
+
+- uploads/, donde se almacena el archivo recibido.
+- processed/, donde se almacena el resultado del procesamiento.
+
+También se debe revisar la cola principal de Amazon SQS para confirmar que los mensajes sean consumidos correctamente por Lambda Processor.
+
+Si un mensaje supera el número máximo de intentos configurado, debe ser enviado a la Dead Letter Queue para su posterior revisión.
+
+## 17. CloudWatch
 
 Las funciones Lambda generan logs en Amazon CloudWatch.
 
@@ -457,7 +469,7 @@ Procesado: uploads/archivo.bin -> processed/archivo.bin
 
 ---
 
-## 17. Dead Letter Queue
+## 18. Dead Letter Queue
 
 La arquitectura utiliza una Dead Letter Queue para almacenar mensajes que no puedan procesarse correctamente después de varios intentos.
 
@@ -591,10 +603,6 @@ Las pruebas realizadas confirmaron el funcionamiento completo del flujo desde AP
 
 Finalmente, se realizó la eliminación controlada de los recursos mediante `terraform destroy`, comprobando que toda la infraestructura puede ser creada y eliminada de manera reproducible mediante código.}
 
-
-## Evidencias
-
-El proyecto fue desplegado y validado en AWS para los ambientes DEV, QA y PROD.
 
 INTEGRANTES:
 Enriquez Cabanillas, César - 000280651
