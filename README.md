@@ -10,6 +10,7 @@ La arquitectura puede desplegarse de forma independiente en tres entornos:
 - QA
 - PROD
 
+La separación por ambientes permite realizar pruebas y validaciones de forma independiente antes de pasar los cambios a producción. De esta manera, DEV se utiliza para desarrollo, QA para pruebas y PROD para el entorno final.
 ---
 
 ## 1. Objetivo del proyecto
@@ -480,6 +481,30 @@ maxReceiveCount = 3
 ```
 
 Después de superar dicho número de intentos, SQS envía el mensaje a la DLQ.
+
+---
+
+## 19. Eliminación de recursos
+=======
+
+## 18. Eliminación de recursos
+=======
+## 18. Verificación del despliegue
+
+Después de ejecutar `terraform apply`, se debe comprobar en la consola de AWS que los recursos fueron creados correctamente.
+
+Se recomienda verificar:
+
+- Amazon API Gateway
+- AWS Lambda Upload
+- AWS Lambda Processor
+- Amazon S3
+- Amazon SQS
+- Dead Letter Queue
+- CloudWatch Logs
+- Recursos de red de la VPC
+
+También se debe guardar evidencia de los entornos DEV, QA y PROD antes de ejecutar `terraform destroy`.
 
 ---
 
