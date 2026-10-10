@@ -632,7 +632,7 @@ La solución permite desplegar múltiples ambientes independientes y automatiza 
 
 Las pruebas realizadas confirmaron el funcionamiento completo del flujo desde API Gateway hasta el procesamiento final de los archivos almacenados en Amazon S3.
 
-Finalmente, se realizó la eliminación controlada de los recursos mediante `terraform destroy`, comprobando que toda la infraestructura puede ser creada y eliminada de manera reproducible mediante código.}
+Finalmente, se realizó la eliminación controlada de los recursos mediante `terraform destroy`, comprobando que toda la infraestructura puede ser creada y eliminada de manera reproducible mediante código.
 
 
 ## Evidencias
