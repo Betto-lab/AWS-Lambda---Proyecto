@@ -244,7 +244,19 @@ Cada uno utiliza su propio archivo de variables.
 
 ---
 
-## 9. Despliegue DEV
+## 9. Validación de los entornos
+
+Antes de realizar el despliegue se debe verificar que Terraform esté utilizando el workspace y el archivo .tfvars correspondiente al ambiente.
+
+La relación utilizada en el proyecto es:
+
+- DEV: workspace default con dev.tfvars
+- QA: workspace qa con qa.tfvars
+- PROD: workspace prod con prod.tfvars
+
+Antes de ejecutar terraform apply se recomienda utilizar terraform workspace show para comprobar el workspace activo y evitar desplegar recursos en un ambiente incorrecto.
+
+## 10. Despliegue DEV
 
 DEV fue desplegado inicialmente utilizando el workspace `default`.
 
@@ -274,7 +286,7 @@ yes
 
 ---
 
-## 10. Despliegue QA
+## 11. Despliegue QA
 
 Crear el workspace si todavía no existe:
 
@@ -308,7 +320,7 @@ yes
 
 ---
 
-## 11. Despliegue PROD
+## 12. Despliegue PROD
 
 Crear el workspace si todavía no existe:
 
@@ -342,7 +354,7 @@ yes
 
 ---
 
-## 12. Outputs de Terraform
+## 13. Outputs de Terraform
 
 Después de un despliegue exitoso Terraform muestra valores como:
 
@@ -360,7 +372,7 @@ El output `upload_endpoint` contiene la URL utilizada para probar la integració
 
 ---
 
-## 13. Prueba del endpoint
+## 14. Prueba del endpoint
 
 Ejemplo desde Windows CMD:
 
@@ -382,7 +394,7 @@ Respuesta esperada:
 
 ---
 
-## 14. Verificación de Amazon S3
+## 15. Verificación de Amazon S3
 
 Para verificar los archivos:
 
@@ -408,7 +420,7 @@ Esto demuestra que la integración completa funcionó correctamente.
 
 ---
 
-## 15. Flujo de procesamiento
+## 16. Flujo de procesamiento
 
 El flujo funcional es:
 
@@ -434,7 +446,7 @@ Lambda Upload
 
 ---
 
-## 16. CloudWatch
+## 17. CloudWatch
 
 Las funciones Lambda generan logs en Amazon CloudWatch.
 
@@ -458,7 +470,7 @@ Procesado: uploads/archivo.bin -> processed/archivo.bin
 
 ---
 
-## 17. Dead Letter Queue
+## 18. Dead Letter Queue
 
 La arquitectura utiliza una Dead Letter Queue para almacenar mensajes que no puedan procesarse correctamente después de varios intentos.
 
@@ -472,6 +484,8 @@ Después de superar dicho número de intentos, SQS envía el mensaje a la DLQ.
 
 ---
 
+## 19. Eliminación de recursos
+=======
 
 ## 18. Eliminación de recursos
 =======
@@ -495,7 +509,6 @@ También se debe guardar evidencia de los entornos DEV, QA y PROD antes de ejecu
 ---
 
 ## 19. Eliminación de recursos
-
 
 Una parte obligatoria del proyecto es demostrar la eliminación de la infraestructura mediante Terraform.
 
@@ -534,7 +547,7 @@ Destroy complete!
 
 ---
 
-## 19. Eliminación automática del bucket S3
+## 20. Eliminación automática del bucket S3
 
 El bucket utiliza versionado.
 
@@ -548,7 +561,7 @@ Esto permite completar correctamente la destrucción del bucket S3.
 
 ---
 
-## 20. Estado final del proyecto
+## 21. Estado final del proyecto
 
 Los tres ambientes fueron implementados y probados correctamente:
 
@@ -578,7 +591,7 @@ Terraform Destroy       OK
 
 ---
 
-## 21. Repositorio
+## 22. Repositorio
 
 Repositorio del proyecto:
 
@@ -586,7 +599,7 @@ https://github.com/Betto-lab/AWS-Lambda---Proyecto
 
 ---
 
-## 22. Conclusión
+## 23. Conclusión
 
 El proyecto demuestra la implementación de una arquitectura AWS utilizando Infrastructure as Code mediante Terraform.
 
