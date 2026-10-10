@@ -10,7 +10,6 @@ La arquitectura puede desplegarse de forma independiente en tres entornos:
 - QA
 - PROD
 
-La separación por ambientes permite realizar pruebas y validaciones de forma independiente antes de pasar los cambios a producción. De esta manera, DEV se utiliza para desarrollo, QA para pruebas y PROD para el entorno final.
 ---
 
 ## 1. Objetivo del proyecto
@@ -246,15 +245,15 @@ Cada uno utiliza su propio archivo de variables.
 
 ## 9. Validación de los entornos
 
-Antes de realizar el despliegue se debe verificar que Terraform esté utilizando el workspace y el archivo .tfvars correspondiente al ambiente.
+Antes de realizar el despliegue se debe verificar que Terraform esté utilizando el workspace y el archivo `.tfvars` correspondiente al ambiente.
 
 La relación utilizada en el proyecto es:
 
-- DEV: workspace default con dev.tfvars
-- QA: workspace qa con qa.tfvars
-- PROD: workspace prod con prod.tfvars
+- DEV: workspace `default` con `dev.tfvars`
+- QA: workspace `qa` con `qa.tfvars`
+- PROD: workspace `prod` con `prod.tfvars`
 
-Antes de ejecutar terraform apply se recomienda utilizar terraform workspace show para comprobar el workspace activo y evitar desplegar recursos en un ambiente incorrecto.
+Antes de ejecutar `terraform apply` se recomienda utilizar `terraform workspace show` para comprobar el workspace activo y evitar desplegar recursos en un ambiente incorrecto.
 
 ## 10. Despliegue DEV
 
@@ -446,7 +445,19 @@ Lambda Upload
 
 ---
 
-## 17. CloudWatch
+## 17. Verificación de almacenamiento y mensajería
+Después de realizar una prueba del endpoint se debe comprobar el flujo entre Amazon S3 y Amazon SQS.
+
+En Amazon S3 se debe verificar la existencia de objetos en:
+
+- uploads/, donde se almacena el archivo recibido.
+- processed/, donde se almacena el resultado del procesamiento.
+
+También se debe revisar la cola principal de Amazon SQS para confirmar que los mensajes sean consumidos correctamente por Lambda Processor.
+
+Si un mensaje supera el número máximo de intentos configurado, debe ser enviado a la Dead Letter Queue para su posterior revisión.
+
+## 18. CloudWatch
 
 Las funciones Lambda generan logs en Amazon CloudWatch.
 
@@ -470,26 +481,7 @@ Procesado: uploads/archivo.bin -> processed/archivo.bin
 
 ---
 
-## 18. Dead Letter Queue
-
-La arquitectura utiliza una Dead Letter Queue para almacenar mensajes que no puedan procesarse correctamente después de varios intentos.
-
-Terraform configura:
-
-```text
-maxReceiveCount = 3
-```
-
-Después de superar dicho número de intentos, SQS envía el mensaje a la DLQ.
-
----
-
-## 19. Eliminación de recursos
-=======
-
-## 18. Eliminación de recursos
-=======
-## 18. Verificación del despliegue
+## 19. Verificación del despliegue
 
 Después de ejecutar `terraform apply`, se debe comprobar en la consola de AWS que los recursos fueron creados correctamente.
 
@@ -508,7 +500,21 @@ También se debe guardar evidencia de los entornos DEV, QA y PROD antes de ejecu
 
 ---
 
-## 19. Eliminación de recursos
+## 20. Dead Letter Queue
+
+La arquitectura utiliza una Dead Letter Queue para almacenar mensajes que no puedan procesarse correctamente después de varios intentos.
+
+Terraform configura:
+
+```text
+maxReceiveCount = 3
+```
+
+Después de superar dicho número de intentos, SQS envía el mensaje a la DLQ.
+
+---
+
+## 21. Eliminación de recursos
 
 Una parte obligatoria del proyecto es demostrar la eliminación de la infraestructura mediante Terraform.
 
@@ -547,7 +553,7 @@ Destroy complete!
 
 ---
 
-## 20. Eliminación automática del bucket S3
+## 22. Eliminación automática del bucket S3
 
 El bucket utiliza versionado.
 
@@ -561,7 +567,26 @@ Esto permite completar correctamente la destrucción del bucket S3.
 
 ---
 
-## 21. Estado final del proyecto
+## 23. Verificación posterior a terraform destroy
+
+Después de ejecutar `terraform destroy` se debe comprobar que los recursos del ambiente hayan sido eliminados correctamente.
+
+Se recomienda revisar en la consola de AWS:
+
+- API Gateway
+- Funciones Lambda
+- Buckets de Amazon S3
+- Colas SQS y Dead Letter Queue
+- CloudWatch Logs
+- VPC y componentes de red
+- Endpoints de VPC
+
+La comprobación final permite detectar recursos que puedan haber quedado activos y evitar consumos innecesarios en la cuenta de AWS.
+
+Como evidencia se debe conservar la salida `Destroy complete!` de Terraform y capturas de la consola de AWS después de la eliminación.
+
+
+## 24. Estado final del proyecto
 
 Los tres ambientes fueron implementados y probados correctamente:
 
@@ -591,7 +616,7 @@ Terraform Destroy       OK
 
 ---
 
-## 22. Repositorio
+## 25. Repositorio
 
 Repositorio del proyecto:
 
@@ -599,7 +624,7 @@ https://github.com/Betto-lab/AWS-Lambda---Proyecto
 
 ---
 
-## 23. Conclusión
+## 26. Conclusión
 
 El proyecto demuestra la implementación de una arquitectura AWS utilizando Infrastructure as Code mediante Terraform.
 
@@ -613,7 +638,6 @@ Finalmente, se realizó la eliminación controlada de los recursos mediante `ter
 ## Evidencias
 
 El proyecto fue desplegado y validado en AWS para los ambientes DEV, QA y PROD.
-(LO BORRAN)
 
 INTEGRANTES:
 Enriquez Cabanillas, César - 000280651
