@@ -576,6 +576,7 @@ Finalmente, se realizó la eliminación controlada de los recursos mediante `ter
 ## Evidencias
 
 El proyecto fue desplegado y validado en AWS para los ambientes DEV, QA y PROD.
+(LO BORRAN)
 
 INTEGRANTES:
 Enriquez Cabanillas, César - 000280651
