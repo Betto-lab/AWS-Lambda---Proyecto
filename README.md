@@ -483,6 +483,25 @@ Después de superar dicho número de intentos, SQS envía el mensaje a la DLQ.
 
 ---
 
+## 18. Verificación del despliegue
+
+Después de ejecutar `terraform apply`, se debe comprobar en la consola de AWS que los recursos fueron creados correctamente.
+
+Se recomienda verificar:
+
+- Amazon API Gateway
+- AWS Lambda Upload
+- AWS Lambda Processor
+- Amazon S3
+- Amazon SQS
+- Dead Letter Queue
+- CloudWatch Logs
+- Recursos de red de la VPC
+
+También se debe guardar evidencia de los entornos DEV, QA y PROD antes de ejecutar `terraform destroy`.
+
+---
+
 ## 19. Eliminación de recursos
 
 Una parte obligatoria del proyecto es demostrar la eliminación de la infraestructura mediante Terraform.
