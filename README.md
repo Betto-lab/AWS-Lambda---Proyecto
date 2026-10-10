@@ -434,19 +434,7 @@ Lambda Upload
 
 ---
 
-## 16. Verificación de almacenamiento y mensajería
-Después de realizar una prueba del endpoint se debe comprobar el flujo entre Amazon S3 y Amazon SQS.
-
-En Amazon S3 se debe verificar la existencia de objetos en:
-
-- uploads/, donde se almacena el archivo recibido.
-- processed/, donde se almacena el resultado del procesamiento.
-
-También se debe revisar la cola principal de Amazon SQS para confirmar que los mensajes sean consumidos correctamente por Lambda Processor.
-
-Si un mensaje supera el número máximo de intentos configurado, debe ser enviado a la Dead Letter Queue para su posterior revisión.
-
-## 17. CloudWatch
+## 16. CloudWatch
 
 Las funciones Lambda generan logs en Amazon CloudWatch.
 
@@ -470,7 +458,7 @@ Procesado: uploads/archivo.bin -> processed/archivo.bin
 
 ---
 
-## 18. Dead Letter Queue
+## 17. Dead Letter Queue
 
 La arquitectura utiliza una Dead Letter Queue para almacenar mensajes que no puedan procesarse correctamente después de varios intentos.
 
@@ -484,6 +472,9 @@ Después de superar dicho número de intentos, SQS envía el mensaje a la DLQ.
 
 ---
 
+
+## 18. Eliminación de recursos
+=======
 ## 18. Verificación del despliegue
 
 Después de ejecutar `terraform apply`, se debe comprobar en la consola de AWS que los recursos fueron creados correctamente.
@@ -504,6 +495,7 @@ También se debe guardar evidencia de los entornos DEV, QA y PROD antes de ejecu
 ---
 
 ## 19. Eliminación de recursos
+
 
 Una parte obligatoria del proyecto es demostrar la eliminación de la infraestructura mediante Terraform.
 
@@ -542,7 +534,7 @@ Destroy complete!
 
 ---
 
-## 20. Eliminación automática del bucket S3
+## 19. Eliminación automática del bucket S3
 
 El bucket utiliza versionado.
 
@@ -556,7 +548,7 @@ Esto permite completar correctamente la destrucción del bucket S3.
 
 ---
 
-## 21. Estado final del proyecto
+## 20. Estado final del proyecto
 
 Los tres ambientes fueron implementados y probados correctamente:
 
@@ -586,7 +578,7 @@ Terraform Destroy       OK
 
 ---
 
-## 22. Repositorio
+## 21. Repositorio
 
 Repositorio del proyecto:
 
@@ -594,7 +586,7 @@ https://github.com/Betto-lab/AWS-Lambda---Proyecto
 
 ---
 
-## 23. Conclusión
+## 22. Conclusión
 
 El proyecto demuestra la implementación de una arquitectura AWS utilizando Infrastructure as Code mediante Terraform.
 
@@ -604,6 +596,11 @@ Las pruebas realizadas confirmaron el funcionamiento completo del flujo desde AP
 
 Finalmente, se realizó la eliminación controlada de los recursos mediante `terraform destroy`, comprobando que toda la infraestructura puede ser creada y eliminada de manera reproducible mediante código.}
 
+
+## Evidencias
+
+El proyecto fue desplegado y validado en AWS para los ambientes DEV, QA y PROD.
+(LO BORRAN)
 
 INTEGRANTES:
 Enriquez Cabanillas, César - 000280651
